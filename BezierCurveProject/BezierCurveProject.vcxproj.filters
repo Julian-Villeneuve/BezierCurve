@@ -64,16 +64,12 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="openglwidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="basicShader.xaml">
-      <Filter>Resource Files</Filter>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
+    <None Include="basicShader.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="basicShader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
