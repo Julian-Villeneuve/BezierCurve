@@ -1,8 +1,0 @@
-﻿  Reading Qt configuration (C:/workspace/Qt/5.15.2/msvc2019_64/bin/qmake)
-  moc mainwindow.h
-  mesh.cpp
-  openglwidget.cpp
-  shader.cpp
-  moc_openglwidget.cpp
-  moc_mainwindow.cpp
-  BezierCurveProject.vcxproj -> C:\workspace\OpenGL\BezierCurveProject\x64\Debug\BezierCurveProject.exe
