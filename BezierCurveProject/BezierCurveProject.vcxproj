@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -93,8 +93,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="curve.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="openglwidget.cpp" />
+    <ClCompile Include="points.cpp" />
     <ClCompile Include="shader.cpp" />
     <QtRcc Include="mainwindow.qrc" />
     <QtUic Include="mainwindow.ui" />
@@ -103,8 +105,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="curve.h" />
     <ClInclude Include="mesh.h" />
     <QtMoc Include="openglwidget.h" />
+    <ClInclude Include="points.h" />
     <ClInclude Include="shader.h" />
   </ItemGroup>
   <ItemGroup>

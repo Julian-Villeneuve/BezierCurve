@@ -49,12 +49,24 @@
     <ClCompile Include="openglwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="curve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="points.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="curve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="points.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
