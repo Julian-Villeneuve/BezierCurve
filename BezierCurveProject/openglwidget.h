@@ -29,7 +29,7 @@ protected:
 	// OpenGL events
 	// -------------
 	void OpenGLWidget::mousePressEvent(QMouseEvent* event);
-	void keyPressEvent(QKeyEvent* event) override;
+	//void keyPressEvent(QKeyEvent* event) override;
 private:
 	int _width;
 	int _height;
@@ -37,10 +37,10 @@ private:
 	Mesh* _mesh;
 	Mesh* _controlPolygon;
 	Curve* _curve;
-	Points* _points;			   // control points to show them on screen then compute control polygon
-	vector<glm::vec3> _pointsList; // control points for bezier curve computing
+	Points* _points;			   // control points to show them on screen
+	vector<glm::vec3> _pointsListCurve; // control points for bezier curve computing
 	int _nbPoint = 4;
 	GLfloat _xAtPress;
 	GLfloat _yAtPress;
-	vector<Vertex> controlVertices;
+	vector<Vertex> controlVertices; // control points to compute then draw control polygon
 };

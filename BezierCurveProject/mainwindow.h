@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "openglwidget.h"
+#include "openglpatch.h"
 #include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow
@@ -10,7 +11,10 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
+
+    void MainWindow::keyPressEvent(QKeyEvent* event);
 private:
     Ui::MainWindowClass ui;
     OpenGLWidget* openglWidget;
+    OpenGLPatch* openglPatch;
 };

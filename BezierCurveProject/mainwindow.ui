@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>724</width>
-    <height>491</height>
+    <height>526</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,6 +22,32 @@
       <width>691</width>
       <height>421</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="curveButton">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>440</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bezier Curve</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="patchButton">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>440</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bezier Patch</string>
     </property>
    </widget>
   </widget>

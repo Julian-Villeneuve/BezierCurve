@@ -46,11 +46,11 @@ void OpenGLWidget::initializeGL()
 
 	// add all points in a vector to compute and draw Bezier Curve
 	// -----------------------------------------------------------
-	_pointsList.push_back(glm::vec3(0.5, -0.5, 0));
-	_pointsList.push_back(glm::vec3(0.5, 0.5, 0));
-	_pointsList.push_back(glm::vec3(-0.5, 0.5, 0));
-	_pointsList.push_back(glm::vec3(-0.5, -0.5, 0));
-	_pointsList.push_back(glm::vec3(0, 0, 0));
+	_pointsListCurve.push_back(glm::vec3(0.5, -0.5, 0));
+	_pointsListCurve.push_back(glm::vec3(0.5, 0.5, 0));
+	_pointsListCurve.push_back(glm::vec3(-0.5, 0.5, 0));
+	_pointsListCurve.push_back(glm::vec3(-0.5, -0.5, 0));
+	_pointsListCurve.push_back(glm::vec3(0, 0, 0));
 	
 	// create vertices of these points to draw separately the control polygon
 	// ----------------------------------------------------------------------
@@ -69,7 +69,7 @@ void OpenGLWidget::initializeGL()
 	// the 3 parts above have to add the points in the same order
 
 	_controlPolygon = new Mesh(&controlVertices, controlVertices.size());
-	_curve = new Curve(_pointsList, _pointsList.size());
+	_curve = new Curve(_pointsListCurve, _pointsListCurve.size());
 }
 
 void OpenGLWidget::paintGL()
@@ -94,33 +94,36 @@ void OpenGLWidget::resizeGL(int width, int height)
 
 void OpenGLWidget::mousePressEvent(QMouseEvent* event)
 {
-	_xAtPress = (event->localPos().x()) / _width * 2 - 1;
-	_yAtPress = -((event->localPos().y()) / _height * 2 - 1);
-	_points->Add(glm::vec2(_xAtPress, _yAtPress));
-	_pointsList.push_back(glm::vec3(_xAtPress, _yAtPress, 0));
-	struct Vertex v;
-	v.pos = glm::vec3(_xAtPress, _yAtPress, 0);
-	controlVertices.push_back(v);
-	_nbPoint++;
-	//_controlPolygon->~Mesh();
-	//_controlPolygon = new Mesh(&controlVertices, controlVertices.size());
-	//_curve = new Curve(_pointsList, _nbPoint);
-	//_curve->_curveMesh->Draw();
-	update();
-}
-
-
-void OpenGLWidget::keyPressEvent(QKeyEvent* event)
-{
-	if (event->key() == Qt::Key_S)
+	if (event->button() == Qt::LeftButton)
 	{
-		/*AllocConsole();
-		freopen("CONOUT$", "w", stdout);
-		freopen("CONOUT$", "w", stderr);
-		std::cout << " S KEY IS PRESSED ";*/
-		/*if(!_controlPolygon->_destroyed)
-			_controlPolygon->~Mesh();
-		_controlPolygon->DrawControl();
-		update();*/
+		_xAtPress = (event->localPos().x()) / _width * 2 - 1;
+		_yAtPress = -((event->localPos().y()) / _height * 2 - 1);
+		_points->Add(glm::vec2(_xAtPress, _yAtPress));
+		_pointsListCurve.push_back(glm::vec3(_xAtPress, _yAtPress, 0));
+		struct Vertex v;
+		v.pos = glm::vec3(_xAtPress, _yAtPress, 0);
+		controlVertices.push_back(v);
+		_nbPoint++;
+		//_controlPolygon->~Mesh();
+		//_controlPolygon = new Mesh(&controlVertices, controlVertices.size());
+		//_curve = new Curve(_pointsList, _nbPoint);
+		//_curve->_curveMesh->Draw();
+		update();
 	}
 }
+
+
+//void OpenGLWidget::keyPressEvent(QKeyEvent* event)
+//{
+//	if (event->key() == Qt::Key_S)
+//	{
+//		AllocConsole();
+//		freopen("CONOUT$", "w", stdout);
+//		freopen("CONOUT$", "w", stderr);
+//		std::cout << " S KEY IS PRESSED ";
+//		if(!_controlPolygon->_destroyed)
+//			_controlPolygon->~Mesh();
+//		_controlPolygon->DrawControl();
+//		update();
+//	}
+//}

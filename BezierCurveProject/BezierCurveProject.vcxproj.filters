@@ -55,6 +55,9 @@
     <ClCompile Include="points.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="openglpatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mesh.h">
@@ -72,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="openglwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="openglpatch.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
