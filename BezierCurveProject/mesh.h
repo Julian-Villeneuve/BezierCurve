@@ -7,18 +7,12 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLFunctions_4_4_Core>
 
-// vertex class that totally could be a struct in this project
+// vertex struct that totally could be a class in this project
 // -----------------------------------------------------------
-class Vertex
-{
-public:
-	Vertex(const glm::vec3& pos)
-	{
-		this->_pos = pos;
-	}
-protected:
-private:
-	glm::vec3 _pos;
+struct Vertex {
+	glm::vec3 pos;
+	//glm::vec3 normal;
+	//glm::vec2 texCoords;
 };
 
 // mesh class
@@ -28,15 +22,19 @@ class Mesh : public QOpenGLFunctions_4_4_Core
 public:
 	// constructor
 	// -----------
-	Mesh(Vertex* vertices, unsigned int numVertices);
+	Mesh::Mesh(std::vector<Vertex>* vertices, unsigned int numVertices);
 
 	// mesh drawing method
 	// -------------------
 	void Draw();
 
+	void Mesh::DrawControl();
+
 	// destructor
 	// ----------
 	virtual ~Mesh();
+
+	bool _destroyed = false;
 protected:
 private:
 	Mesh(const Mesh& other);

@@ -28,6 +28,7 @@ void Points::Delete()
 
 void Points::Draw()
 {
+	glColor3ub(0, 0, 0);
 	glBindVertexArray(_VAOpoints);
 	glBindBuffer(GL_ARRAY_BUFFER, _VBOpoints);
 	glDrawArrays(GL_POINTS, 0, (int)_pointsList.size());

@@ -17,9 +17,9 @@
    <widget class="OpenGLWidget" name="openGLWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
-      <width>701</width>
+      <width>691</width>
       <height>421</height>
      </rect>
     </property>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include "openglwidget.h"
 #include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow
@@ -9,7 +10,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
-
 private:
     Ui::MainWindowClass ui;
+    OpenGLWidget* openglWidget;
 };
