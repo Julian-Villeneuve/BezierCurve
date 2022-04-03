@@ -1,12 +1,17 @@
 # Projet M1 IAFA - Informatique Graphique
 
+## Bézier Curve
+
 ### Mesh
 La classe Mesh est la classe la plus utilisée du projet, servant à construire le maillage des courbes et surfaces de Bézier.
 
-### Bézier Curve
+### Ajout de points de contrôle
 
-Pour l'instant il faut ajouter les points de contrôle à la main, la méthode d'ajout en temps réel avec la souris n'est pas fonctionnelle (ce sera avec un clique gauche,
-cela n'ajoute que des points tous seuls pour le moment).
+Pour l'instant il faut ajouter les points de contrôle à la main, la méthode d'ajout en temps réel avec la souris n'est pas fonctionnelle (ce sera avec un clique gauche, cela n'ajoute que des points tous seuls pour le moment).
+
+La méthode utilisée est la méthode récursive, avec la formule de Wikipédia (https://en.wikipedia.org/wiki/B%C3%A9zier_curve) suivante:
+![Bezier Curve Recursive Formula](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/bezierRecursiveFormula.png)
+
 Dans la méthode initializeGL() de la classe OpenGLWidget, on doit ajouter les points dans 3 listes différentes:
 - La liste de points de la classe Point, affichant simplement les points:
 ```	cpp
@@ -35,6 +40,9 @@ controlVertices.push_back(v3);
 controlVertices.push_back(v4);
 controlVertices.push_back(v5);
 ```
+
+### Résultats obtenus après ajout de points
+
 Avec ces 3 points pris en exemple, on obtient l'image suivante après l'appel des méthodes Draw correspondantes:
 ``` cpp
 _points->Draw();
@@ -58,5 +66,5 @@ Puis:
 ![Bezier Curve 5 points](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/Bezier5points.png)
 
 
-### Bézier Patch
+## Bézier Patch
 
