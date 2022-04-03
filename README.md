@@ -1,5 +1,16 @@
 # Projet M1 IAFA - Informatique Graphique
 
+## Commandes
+- Clavier:
+
+c -> ouvre/réinitialise la simulation de courbe de Bézier
+
+p -> ouvre/réinitialise la simulation de surface de Bézier
+
+- Souris:
+
+clic_gauche -> ajoute des points dans la simulation de courbe de Bézier
+
 ## Bézier Curve
 
 ### Mesh
