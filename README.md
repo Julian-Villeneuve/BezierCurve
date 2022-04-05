@@ -23,33 +23,36 @@ Pour l'instant il faut ajouter les points de contrôle à la main, la méthode d
 La méthode utilisée est la méthode récursive, avec la formule de Wikipédia (https://en.wikipedia.org/wiki/B%C3%A9zier_curve) suivante:
 ![Bezier Curve Recursive Formula](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/bezierRecursiveFormula.png)
 
+On initialise les points en vec3 :
+``` cpp
+glm::vec3 point1 = glm::vec3(0.5, -0.5, 0.0);
+glm::vec3 point2 = glm::vec3(0.5, 0.5, 0.0);
+glm::vec3 point3 = glm::vec3(-0.5, 0.5, 0.0);
+```
+
 Dans la méthode initializeGL() de la classe OpenGLWidget, on doit ajouter les points dans 3 listes différentes:
 - La liste de points de la classe Point, affichant simplement les points:
 ```	cpp
 _points = new Points();
-_points->Add(glm::vec2(0.5, -0.5));
-_points->Add(glm::vec2(0.5, 0.5));
-_points->Add(glm::vec2(-0.5, 0.5));
+_points->Add(point1);
+_points->Add(point2);
+_points->Add(point3);
 ```
 - La liste de ces mêmes points dans un vecteur qui les enverra dans la classe Curve, qui calculera la courbe de Bézier résultante et la dessinera:
 ``` cpp
-_pointsListCurve.push_back(glm::vec3(0.5, -0.5, 0));
-_pointsListCurve.push_back(glm::vec3(0.5, 0.5, 0));
-_pointsListCurve.push_back(glm::vec3(-0.5, 0.5, 0));
+_pointsListCurve.push_back(point1);
+_pointsListCurve.push_back(point2);
+_pointsListCurve.push_back(point3);
 ```
 - Toujours ces mêmes points, dans un vecteur de Vertex qui en soit fait doublon mais que j'ai séparé pour bien distinguer le polygone de la courbe:
 ``` cpp
 struct Vertex v1, v2, v3, v4, v5;
-v1.pos = glm::vec3(0.5, -0.5, 0);
-v2.pos = glm::vec3(0.5, 0.5, 0);
-v3.pos = glm::vec3(-0.5, 0.5, 0);
-v4.pos = glm::vec3(-0.5, -0.5, 0);
-v5.pos = glm::vec3(0, 0, 0);
+v1.pos = point1;
+v2.pos = point2;
+v3.pos = point3;
 controlVertices.push_back(v1);
 controlVertices.push_back(v2);
 controlVertices.push_back(v3);
-controlVertices.push_back(v4);
-controlVertices.push_back(v5);
 ```
 
 ### Résultats obtenus après ajout de points
@@ -65,8 +68,8 @@ _controlPolygon->DrawControl();
 Il suffit donc de rajouter 3 lignes dans les 3 vecteurs ci-dessus pour ajouter un point et étendre la courbe, ou simplement modifier les coordonnées des points individuellemnt.
 Par exemple si on ajoute ces deux points l'un après l'autre de la même manière que les autres points:
 ``` cpp
-glm::vec3(-0.5, -0.5, 0);
-glm::vec3(0, 0, 0);
+glm::vec3 point4 = glm::vec3(-0.5, -0.5, 0.0);
+glm::vec3 point5 = glm::vec3(0.0, 0.0, 0.0);
 ```
 On obtient successivement:
 
