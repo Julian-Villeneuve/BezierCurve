@@ -1,15 +1,20 @@
 # Projet M1 IAFA - Informatique Graphique
 
 ## Commandes
-- Clavier:
+- Simulation courbe de Bézier:
 
-c -> ouvre/réinitialise la simulation de courbe de Bézier
+c -> réinitialise la simulation de courbe de Bézier
 
-p -> ouvre/réinitialise la simulation de surface de Bézier
+p -> ouvre la simulation de surface de Bézier
 
-- Souris:
+clic_gauche -> ajoute des points
 
-clic_gauche -> ajoute des points dans la simulation de courbe de Bézier
+- Simulation surface de Bézier:
+
+c -> ouvre la simulation de courbe de Bézier
+
+p -> réinitialise la simulation de surface de Bézier
+
 
 ## Bézier Curve
 
@@ -30,7 +35,7 @@ glm::vec3 point2 = glm::vec3(0.5, 0.5, 0.0);
 glm::vec3 point3 = glm::vec3(-0.5, 0.5, 0.0);
 ```
 
-Dans la méthode initializeGL() de la classe OpenGLWidget, on doit ajouter les points dans 3 listes différentes:
+Dans la méthode initializeGL() de la classe OpenGLWidget, on doit ajouter les points dans 2 listes différentes:
 - La liste de points de la classe Point, affichant simplement les points:
 ```	cpp
 _points = new Points();
@@ -38,15 +43,10 @@ _points->Add(point1);
 _points->Add(point2);
 _points->Add(point3);
 ```
-- La liste de ces mêmes points dans un vecteur qui les enverra dans la classe Curve, qui calculera la courbe de Bézier résultante et la dessinera:
+
+- Ces mêmes points, dans un vecteur de Vertex qui serviront ici à calculer la courbe de Bézier, et dessiner ce dernier ainsi que le polygone de contrôle
 ``` cpp
-_pointsListCurve.push_back(point1);
-_pointsListCurve.push_back(point2);
-_pointsListCurve.push_back(point3);
-```
-- Toujours ces mêmes points, dans un vecteur de Vertex qui en soit fait doublon mais que j'ai séparé pour bien distinguer le polygone de la courbe:
-``` cpp
-struct Vertex v1, v2, v3, v4, v5;
+struct Vertex v1, v2, v3;
 v1.pos = point1;
 v2.pos = point2;
 v3.pos = point3;
