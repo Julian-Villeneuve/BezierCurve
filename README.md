@@ -1,5 +1,9 @@
 # Projet M1 IAFA - Informatique Graphique
 
+## Utilisation
+
+Pour utiliser l'application, le .exe est disponible dans le git. Pour la modifier il est conseillé d'utiliser Visual Studio avec glm et Qt (version 5 au moins) d'installés. Il suffit de charger la solution fournie avec Visual Studio: https://github.com/Julian-Villeneuve/BezierCurve/blob/main/BezierCurveProject.sln
+
 ## Commandes
 - Simulation courbe de Bézier:
 
@@ -7,13 +11,17 @@ c -> réinitialise la simulation de courbe de Bézier
 
 p -> ouvre la simulation de surface de Bézier
 
-clic_gauche -> ajoute des points
+clic_gauche -> ajoute des points (plus fonctionnel, à corriger : calcule la nouvelle courbe à chaque ajout de point)
 
 - Simulation surface de Bézier:
 
 c -> ouvre la simulation de courbe de Bézier
 
 p -> réinitialise la simulation de surface de Bézier
+
+clic_gauche enfoncé -> déplacer la caméra
+
+molette_souris -> zoom/dezoom
 
 
 ## Bézier Curve
@@ -80,5 +88,10 @@ Puis:
 ![Bezier Curve 5 points](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/Bezier5points.png)
 
 
-## Bézier Patch
+## Bézier Surface Patch
+
+### Caméra
+
+
+
 
