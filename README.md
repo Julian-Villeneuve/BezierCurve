@@ -64,8 +64,8 @@ controlVertices.push_back(v3);
 Avec ces 3 points pris en exemple, on obtient l'image suivante après l'appel des méthodes Draw correspondantes:
 ``` cpp
 _points->Draw();
-_curve->_curveMesh->Draw();
-_controlPolygon->DrawControl();
+_curve->_curveMesh->Draw(_shaderCurve);
+_controlPolygon->Draw(_shaderPoly);
 ```
 ![Bezier Curve 3 points](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/Bezier3points.png)
 
