@@ -15,7 +15,7 @@ clic_gauche -> ajoute des points (plus fonctionnel, à corriger : calcule la nou
 
 espace -> ouvre la simulation de courbe de Bézier
 
-clic_gauche enfoncé -> déplacer la caméra
+clic enfoncé -> déplacer la caméra
 
 molette_souris -> zoom/dezoom
 
@@ -88,6 +88,7 @@ Puis:
 
 ### Caméra
 
+La souris permet de déplacer la caméra autour de l'objet
 
-
+![Bezier3points](https://user-images.githubusercontent.com/59332180/162327745-88fd9ed3-0748-4ffe-b707-64c3e5e93ab9.png)
 
