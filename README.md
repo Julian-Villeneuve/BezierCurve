@@ -7,17 +7,13 @@ Pour utiliser l'application, le .exe est disponible dans le git. Pour la modifie
 ## Commandes
 - Simulation courbe de Bézier:
 
-c -> réinitialise la simulation de courbe de Bézier
-
-p -> ouvre la simulation de surface de Bézier
+espace -> ouvre la simulation de surface de Bézier
 
 clic_gauche -> ajoute des points (plus fonctionnel, à corriger : calcule la nouvelle courbe à chaque ajout de point)
 
 - Simulation surface de Bézier:
 
-c -> ouvre la simulation de courbe de Bézier
-
-p -> réinitialise la simulation de surface de Bézier
+espace -> ouvre la simulation de courbe de Bézier
 
 clic_gauche enfoncé -> déplacer la caméra
 
