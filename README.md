@@ -30,7 +30,7 @@ La classe Mesh est la classe la plus utilisée du projet, servant à construire 
 Pour l'instant il faut ajouter les points de contrôle à la main, la méthode d'ajout en temps réel avec la souris n'est pas fonctionnelle (ce sera avec un clique gauche, cela n'ajoute que des points tous seuls pour le moment).
 
 La méthode utilisée est la méthode récursive, avec la formule de Wikipédia (https://en.wikipedia.org/wiki/B%C3%A9zier_curve) suivante:
-![Bezier Curve Recursive Formula](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/bezierRecursiveFormula.png)
+![bezierRecursiveFormula](https://user-images.githubusercontent.com/59332180/162328081-d602c7e6-1e71-40d5-af09-f05f35da0771.png)
 
 On initialise les points en vec3 :
 ``` cpp
@@ -67,7 +67,7 @@ _points->Draw();
 _curve->_curveMesh->Draw(_shaderCurve);
 _controlPolygon->Draw(_shaderPoly);
 ```
-![Bezier Curve 3 points](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/Bezier3points.png)
+![Bezier3points](https://user-images.githubusercontent.com/59332180/162328015-77f40d2a-3bbe-42d8-b96f-72d963a2bf02.png)
 
 Il suffit donc de rajouter 3 lignes dans les 3 vecteurs ci-dessus pour ajouter un point et étendre la courbe, ou simplement modifier les coordonnées des points individuellemnt.
 Par exemple si on ajoute ces deux points l'un après l'autre de la même manière que les autres points:
@@ -77,11 +77,11 @@ glm::vec3 point5 = glm::vec3(0.0, 0.0, 0.0);
 ```
 On obtient successivement:
 
-![Bezier Curve 4 points](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/Bezier4points.png)
+![Bezier4points](https://user-images.githubusercontent.com/59332180/162328023-7855ef0e-59e4-4e60-8670-3e4c54f712e2.png)
 
 Puis:
 
-![Bezier Curve 5 points](https://github.com/Julian-Villeneuve/BezierCurve/blob/main/res/Bezier5points.png)
+![Bezier5points](https://user-images.githubusercontent.com/59332180/162328056-aaa07141-e4e6-4ebb-b020-67d74ce1f60f.png)
 
 
 ## Bézier Surface Patch
@@ -90,5 +90,4 @@ Puis:
 
 La souris permet de déplacer la caméra autour de l'objet
 
-![Bezier3points](https://user-images.githubusercontent.com/59332180/162327745-88fd9ed3-0748-4ffe-b707-64c3e5e93ab9.png)
 
