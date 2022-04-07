@@ -25,6 +25,9 @@ molette_souris -> zoom/dezoom
 ### Mesh
 La classe Mesh est la classe la plus utilisée du projet, servant à construire le maillage des courbes et surfaces de Bézier.
 
+### Curve
+La classe Curve regroupe les courbes de Bézier et les surfaces de Bézier. C'est là que l'on va calculer les points de la courbe de Bézier avec la méthode récursive expliquée au début du point suivant. Grâce à ces points obtenus, on pourra calculer les points de la surface de Bézier.
+
 ### Ajout de points de contrôle
 
 Pour l'instant il faut ajouter les points de contrôle à la main, la méthode d'ajout en temps réel avec la souris n'est pas fonctionnelle (ce sera avec un clique gauche, cela n'ajoute que des points tous seuls pour le moment).
@@ -86,8 +89,21 @@ Puis:
 
 ## Bézier Surface Patch
 
+Appuyez sur espace pour passer à la simulation de surface de Bézier.
+
 ### Caméra
 
-La souris permet de déplacer la caméra autour de l'objet
+Le clic souris enfoncé permet de déplacer la caméra autour de l'objet, et la molette à zoomer ou dézoomer.
+
+### Surface
+
+On peut ajouter ou modifier les points de contrôle ici aussi de la même manière qu'avant. C'est dans la méthode initializeGL() de la  OpenGLPatch,
+on ajoute des points de coordonnées glm::vec3, créer un Vertex prenant ces coordonnées puis le push dans le vecteur _controlPoints de points de contrôle.
+Une fois envoyé dans la classe Curve, tous les points nécessaires pour dessiner une surface seront calculés, puis après les appels suivants, on obtient:
+
+
+
+
+
 
 
