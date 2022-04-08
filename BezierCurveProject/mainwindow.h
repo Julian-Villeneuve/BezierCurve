@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include <QStackedWidget>
 #include "openglwidget.h"
 #include "openglpatch.h"
 #include "ui_mainwindow.h"
@@ -17,4 +18,6 @@ private:
     Ui::MainWindowClass ui;
     OpenGLWidget* openglWidget;
     OpenGLPatch* openglPatch;
+    bool _curveScreen = true;
+    QStackedWidget* stackedWidget;
 };

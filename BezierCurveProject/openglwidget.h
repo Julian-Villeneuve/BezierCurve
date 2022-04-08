@@ -33,14 +33,11 @@ protected:
 private:
 	int _width;
 	int _height;
-	Shader* _shader;
-	Mesh* _mesh;
-	Mesh* _controlPolygon;
+	Shader* _shaderPoly, *_shaderCurve;
+	Mesh* _mesh, *_controlPolygon;
 	Curve* _curve;
 	Points* _points;			   // control points to show them on screen
-	vector<glm::vec3> _pointsListCurve; // control points for bezier curve computing
 	int _nbPoint = 4;
-	GLfloat _xAtPress;
-	GLfloat _yAtPress;
-	vector<Vertex> controlVertices; // control points to compute then draw control polygon
+	GLfloat _xAtPress, _yAtPress, _prevX, _prevY;
+	vector<Vertex> _controlVertices; // control points for bezier curve computing and then draw control polygon
 };

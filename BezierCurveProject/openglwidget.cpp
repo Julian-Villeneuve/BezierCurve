@@ -32,54 +32,55 @@ void OpenGLWidget::initializeGL()
 	vertices.push_back(v3);
 	_mesh = new Mesh(&vertices, vertices.size());*/
 
-	_shader = new Shader("basicShader");
+	_shaderPoly = new Shader("basicShader");
+	_shaderCurve = new Shader("curveShader");
 	glColor3f(0.0, 0.0, 0.0);
+
+	// add or modify points here
+	glm::vec3 point1 = glm::vec3(0.5, -0.5, 0.0);
+	glm::vec3 point2 = glm::vec3(0.5, 0.5, 0.0);
+	glm::vec3 point3 = glm::vec3(-0.5, 0.5, 0.0);
+	glm::vec3 point4 = glm::vec3(-0.5, -0.5, 0.0);
+	glm::vec3 point5 = glm::vec3(0.0, 0.0, 0.0);
 
 	// add all points as Point class to draw them
 	// ------------------------------------------
 	_points = new Points();
-	_points->Add(glm::vec2(0.5, -0.5));
-	_points->Add(glm::vec2(0.5, 0.5));
-	_points->Add(glm::vec2(-0.5, 0.5));
-	_points->Add(glm::vec2(-0.5, -0.5));
-	_points->Add(glm::vec2(0, 0));
-
-	// add all points in a vector to compute and draw Bezier Curve
-	// -----------------------------------------------------------
-	_pointsListCurve.push_back(glm::vec3(0.5, -0.5, 0));
-	_pointsListCurve.push_back(glm::vec3(0.5, 0.5, 0));
-	_pointsListCurve.push_back(glm::vec3(-0.5, 0.5, 0));
-	_pointsListCurve.push_back(glm::vec3(-0.5, -0.5, 0));
-	_pointsListCurve.push_back(glm::vec3(0, 0, 0));
+	_points->Add(point1);
+	_points->Add(point2);
+	_points->Add(point3);
+	_points->Add(point4);
+	_points->Add(point5);
 	
-	// create vertices of these points to draw separately the control polygon
-	// ----------------------------------------------------------------------
+	// add all points in a vector to compute and draw Bezier Curve then draw separately the control polygon
+	// ----------------------------------------------------------------------------------------------------
 	struct Vertex v1, v2, v3, v4, v5;
-	v1.pos = glm::vec3(0.5, -0.5, 0);
-	v2.pos = glm::vec3(0.5, 0.5, 0);
-	v3.pos = glm::vec3(-0.5, 0.5, 0);
-	v4.pos = glm::vec3(-0.5, -0.5, 0);
-	v5.pos = glm::vec3(0, 0, 0);
-	controlVertices.push_back(v1);
-	controlVertices.push_back(v2);
-	controlVertices.push_back(v3);
-	controlVertices.push_back(v4);
-	controlVertices.push_back(v5);
+	v1.pos = point1;
+	v2.pos = point2;
+	v3.pos = point3;
+	v4.pos = point4;
+	v5.pos = point5;
+	_controlVertices.push_back(v1);
+	_controlVertices.push_back(v2);
+	_controlVertices.push_back(v3);
+	_controlVertices.push_back(v4);
+	_controlVertices.push_back(v5);
 
 	// the 3 parts above have to add the points in the same order
 
-	_controlPolygon = new Mesh(&controlVertices, controlVertices.size());
-	_curve = new Curve(_pointsListCurve, _pointsListCurve.size());
+	_controlPolygon = new Mesh(&_controlVertices, _controlVertices.size());
+	_curve = new Curve(_controlVertices, _controlVertices.size());
+	_curve->getFullCurve();
+
 }
 
 void OpenGLWidget::paintGL()
 {
 	glClearColor(1.0f, .95f, .75f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-	//_shader->Bind();
-	_points->Draw();
-	_curve->_curveMesh->Draw();
-	_controlPolygon->DrawControl();
+	_points->Draw(_shaderCurve);
+	_curve->_curveMesh->DrawPolygon(_shaderCurve);
+	_controlPolygon->DrawPolygon(_shaderPoly);
 	glFinish();
 }
 
@@ -98,32 +99,23 @@ void OpenGLWidget::mousePressEvent(QMouseEvent* event)
 	{
 		_xAtPress = (event->localPos().x()) / _width * 2 - 1;
 		_yAtPress = -((event->localPos().y()) / _height * 2 - 1);
-		_points->Add(glm::vec2(_xAtPress, _yAtPress));
-		_pointsListCurve.push_back(glm::vec3(_xAtPress, _yAtPress, 0));
+		_points->Add(glm::vec3(_xAtPress, _yAtPress, 0.0));
+
 		struct Vertex v;
 		v.pos = glm::vec3(_xAtPress, _yAtPress, 0);
-		controlVertices.push_back(v);
+		_controlVertices.push_back(v);
 		_nbPoint++;
+		struct Vertex vPrev;
+		vPrev.pos = glm::vec3(_prevX, _prevY, 0);
+
 		//_controlPolygon->~Mesh();
-		//_controlPolygon = new Mesh(&controlVertices, controlVertices.size());
-		//_curve = new Curve(_pointsList, _nbPoint);
+
+		//_curve = new Curve(_controlVertices, _controlVertices.size());
 		//_curve->_curveMesh->Draw();
+
+		_prevX = _xAtPress;
+		_prevY = _yAtPress;
 		update();
 	}
 }
 
-
-//void OpenGLWidget::keyPressEvent(QKeyEvent* event)
-//{
-//	if (event->key() == Qt::Key_S)
-//	{
-//		AllocConsole();
-//		freopen("CONOUT$", "w", stdout);
-//		freopen("CONOUT$", "w", stderr);
-//		std::cout << " S KEY IS PRESSED ";
-//		if(!_controlPolygon->_destroyed)
-//			_controlPolygon->~Mesh();
-//		_controlPolygon->DrawControl();
-//		update();
-//	}
-//}

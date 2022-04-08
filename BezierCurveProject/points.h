@@ -3,6 +3,7 @@
 #include <vector>
 #include <QOpenGLFunctions>
 #include <QOpenGLFunctions_4_4_Core>
+#include "shader.h"
 
 using namespace std;
 
@@ -14,16 +15,16 @@ public:
 
 	~Points();
 
-	void Add(glm::vec2 position);
+	void Add(glm::vec3 position);
 
 	void Delete();
 
-	void Draw();
+	void Draw(Shader* shader);
 
 private:
 	void Update_GPU_Buffer();
 
-	vector<glm::vec2> _pointsList;
+	vector<glm::vec3> _pointsList;
 
 	unsigned int _VAOpoints;
 	unsigned int _VBOpoints;

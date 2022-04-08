@@ -1,18 +1,17 @@
-#include "curve.h"
+#include "surface.h"
 
-
-Curve::Curve(vector <Vertex> controlPoints, int nbPoints)
+Surface::Surface(vector <Vertex> controlPoints, int nbPoints)
 {
 	_controlPoints = controlPoints;
 	_nbPoints = nbPoints;
 }
 
-Curve::~Curve()
+Surface::~Surface()
 {
 
 }
 
-glm::vec3 Curve::bezierCurveCompute(float t, int start, int stop)
+glm::vec3 Surface::bezierCurveCompute(float t, int start, int stop)
 {
     if (start == stop) return _controlPoints[start].pos;
     glm::vec3 left = bezierCurveCompute(t, start, stop - 1);
@@ -20,13 +19,13 @@ glm::vec3 Curve::bezierCurveCompute(float t, int start, int stop)
     return ((1 - t) * left) + (t * right);
 }
 
-glm::vec3 Curve::bezierSurfaceCompute(float u, float v)
+glm::vec3 Surface::bezierSurfaceCompute(float u, float v)
 {
 	vector<Vertex> allPoints = _controlPoints;
 	vector<glm::vec3> pointsToAdd;
-	vector<Vertex> superCurve;	
+	vector<Vertex> superCurve;
 
-	for (int i = 0; i < 4; ++i) 
+	for (int i = 0; i < 4; ++i)
 	{
 		superCurve.clear();
 		superCurve.push_back(allPoints[i * 4]);
@@ -53,16 +52,26 @@ glm::vec3 Curve::bezierSurfaceCompute(float u, float v)
 
 }
 
-void Curve::getFullCurve()
+void Surface::getFullSurface()
 {
+	vector<unsigned int> indices;
+	for (int i = 0; i < _nbPoints * _nbPoints; i++)
+	{
+		indices.push_back(i);
+	}
+
 	vector<Vertex> bezierVertices;
 
-	float step = 0.001 / (float)_nbPoints;
-	for (float t = 0; t < 1.0f; t += step)
+	float step = 1.0 / (float)this->_nbPoints;
+	for (float u = 0; u <= 1.0f; u += step)
 	{
-		struct Vertex v;
-		v.pos = bezierCurveCompute(t, 0, _nbPoints - 1);
-		bezierVertices.push_back(v);
+		for (float v = 0; v <= 1.0f; v += step)
+		{
+			struct Vertex vertex;
+			vertex.pos = bezierSurfaceCompute(u, v);
+			bezierVertices.push_back(vertex);
+		}
 	}
-	_curveMesh = new Mesh(&bezierVertices, bezierVertices.size());
+
+	this->_surfaceMesh = new Mesh(&bezierVertices, indices);
 }

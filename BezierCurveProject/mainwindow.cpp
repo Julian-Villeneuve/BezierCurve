@@ -6,30 +6,35 @@ MainWindow::MainWindow(QWidget *parent)
     ui.setupUi(this);
     openglWidget = new OpenGLWidget(this);
     openglWidget->resize(openglWidget->sizeHint());
-    //openglWidget->setFocus();
+    openglWidget->setFocus();
 
     setCentralWidget(openglWidget);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
 {
-    // press C to open/reset the bezier curve simulation
-	if (event->key() == Qt::Key_C)
+    // press space to open/reset the bezier curve simulation
+	if (event->key() == Qt::Key_Space)
 	{
-        openglWidget = new OpenGLWidget(this);
-        openglWidget->resize(openglWidget->sizeHint());
-        //openglWidget->setFocus();
+        if (_curveScreen)
+        {
+            _curveScreen = false;
+            openglPatch = new OpenGLPatch(this);
+            openglPatch->resize(openglPatch->sizeHint());
+            openglPatch->setFocus();
 
-        setCentralWidget(openglWidget);
-	}
-    
-    // press P to open/reset the bezier patch simulation
-    if (event->key() == Qt::Key_P)
-	{
-        openglPatch = new OpenGLPatch(this);
-        openglPatch->resize(openglPatch->sizeHint());
-        //openglPatch->setFocus();
+            setCentralWidget(openglPatch);
+        }
+        else
+        {
+            _curveScreen = true;
+            openglWidget = new OpenGLWidget(this);
+            openglWidget->resize(openglWidget->sizeHint());
+            openglWidget->setFocus();
 
-        setCentralWidget(openglPatch);
+            setCentralWidget(openglWidget);
+        }
+        
 	}
+
 }

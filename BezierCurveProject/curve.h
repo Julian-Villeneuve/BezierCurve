@@ -11,15 +11,21 @@
 class Curve
 {
 public:
-	Curve(vector < glm::vec3> controlPoints, int nbPoints);
+	Curve(vector <Vertex> controlPoints, int nbPoints);
 	~Curve();
 
 	glm::vec3 Curve::bezierCurveCompute(float t, int start, int stop);
 
+	glm::vec3 Curve::bezierSurfaceCompute(float u, float v);
+
+	void Curve::getFullCurve();
+
+	void Curve::getFullSurface();
+
 	Mesh* _curveMesh;
+	vector<Vertex> _controlPoints;
 protected:
 private:
-	vector<glm::vec3> _controlPoints;
 	int _nbPoints;
 };
 

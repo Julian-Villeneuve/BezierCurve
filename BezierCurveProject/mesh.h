@@ -6,6 +6,8 @@
 #include <glm/glm.hpp>
 #include <QOpenGLFunctions>
 #include <QOpenGLFunctions_4_4_Core>
+#include "shader.h"
+#include "camera.h"
 
 // vertex struct that totally could be a class in this project
 // -----------------------------------------------------------
@@ -20,23 +22,36 @@ struct Vertex {
 class Mesh : public QOpenGLFunctions_4_4_Core
 {
 public:
-	// constructor
-	// -----------
+	// constructors
+	// ------------
 	Mesh::Mesh(std::vector<Vertex>* vertices, unsigned int numVertices);
+
+	Mesh::Mesh(std::vector<Vertex>* vertices, std::vector<unsigned int> indices);
+
+	void setupMesh();
 
 	// mesh drawing method
 	// -------------------
-	void Draw();
+	void Draw(Shader* shader);
 
-	void Mesh::DrawControl();
+	void Mesh::DrawPolygon(Shader* shader);
+
+	void Mesh::DrawTriangle(Shader* shader);
 
 	// destructor
 	// ----------
 	virtual ~Mesh();
 
+	// compute mesh triangles of the surface
+	// -------------------------------------
+	void Mesh::meshCompute();
+
+	std::vector<Vertex>*       _vertices;
+	std::vector<unsigned int> _indices;
 	bool _destroyed = false;
 protected:
 private:
+
 	Mesh(const Mesh& other);
 
 	void operator=(const Mesh& other);
@@ -48,10 +63,10 @@ private:
 	};
 
 	// mesh Vertex Array Object
-	GLuint m_VAO;
+	GLuint _VAO;
 	// mesh Vertex Buffer Object
-	GLuint m_VBO[NUM_BUFFERS];
-	unsigned int m_drawCount;
+	GLuint _VBO[NUM_BUFFERS];
+	unsigned int _drawCount;
 };
 
 #endif // MESH_H

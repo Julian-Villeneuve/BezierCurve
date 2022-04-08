@@ -93,12 +93,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="curve.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="openglpatch.cpp" />
     <ClCompile Include="openglwidget.cpp" />
     <ClCompile Include="points.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="surface.cpp" />
     <QtRcc Include="mainwindow.qrc" />
     <QtUic Include="mainwindow.ui" />
     <QtMoc Include="mainwindow.h" />
@@ -106,8 +108,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="curve.h" />
     <ClInclude Include="mesh.h" />
+    <ClInclude Include="surface.h" />
     <QtMoc Include="openglwidget.h" />
     <QtMoc Include="openglpatch.h" />
     <ClInclude Include="points.h" />
@@ -116,6 +120,10 @@
   <ItemGroup>
     <None Include="basicShader.fs" />
     <None Include="basicShader.vs" />
+    <None Include="camera.fs" />
+    <None Include="camera.vs" />
+    <None Include="curveShader.fs" />
+    <None Include="curveShader.vs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

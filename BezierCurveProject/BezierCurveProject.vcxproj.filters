@@ -58,6 +58,12 @@
     <ClCompile Include="openglpatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mesh.h">
@@ -70,6 +76,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="points.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="surface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -87,6 +99,18 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="basicShader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="camera.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="camera.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="curveShader.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="curveShader.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
