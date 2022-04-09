@@ -96,10 +96,23 @@ Appuyez sur espace pour passer à la simulation de surface de Bézier.
 Le clic souris enfoncé permet de déplacer la caméra autour de l'objet, et la molette à zoomer ou dézoomer.
 
 ### Surface
+Actuellement, les points de contrôle ont un axe Z générés aléatoirement, ce qui donnera une surface aléatoire à chaque lancement de la simulation (la touche 
+faisant cela à volonté n'est pas fonctionnelle)
 
-On peut ajouter ou modifier les points de contrôle ici aussi de la même manière qu'avant. C'est dans la méthode initializeGL() de la  OpenGLPatch,
+Sinon on peut ajouter ou modifier les points de contrôle de la même manière qu'avant. C'est dans la méthode initializeGL() de la  OpenGLPatch,
 on ajoute des points de coordonnées glm::vec3, créer un Vertex prenant ces coordonnées puis le push dans le vecteur _controlPoints de points de contrôle.
-Une fois envoyé dans la classe Curve, tous les points nécessaires pour dessiner une surface seront calculés, puis après les appels suivants, on obtient:
+Une fois envoyés dans la classe Curve, tous les points nécessaires pour dessiner une surface seront calculés, puis après les appels de draw, on obtient
+une surface aléatoire et sans maillage suivante:
+
+https://user-images.githubusercontent.com/59332180/162547382-ddcfa92c-518b-4567-84c7-cb979174414e.mp4
+
+### Maillage
+Sans maillage, c'est plutôt dur de s'y retrouver comme le montre la vidéo précédente. La méthode que j'ai utilisé est simple: 
+
+On place les indices des vertices correspondants aux points dans l'ordre dans lequel on veut dessiner les triangles. 
+Avec ces nouveaux indices on dessinera des lignes entre chaque vertex de sorte à avoir un maillage comme ci-dessous:
+
+
 
 
 
