@@ -8,7 +8,7 @@
 #include "mesh.h"
 
 
-class Surface
+class Surface : public QOpenGLFunctions_4_4_Core
 {
 public:
 	Surface(vector <Vertex> controlPoints, int nbPoints);

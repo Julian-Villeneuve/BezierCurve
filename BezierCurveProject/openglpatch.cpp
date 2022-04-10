@@ -38,7 +38,9 @@ void OpenGLPatch::initializeGL()
 
 
 	_shaderCam = new Shader("camera"); 
-	_shaderBezier = new Shader("basicShader"); 
+
+	_shaderPoints = new Shader("cameraPoints");
+
 	_camera = new Camera(_width, _height, glm::vec3(0.0f, 0.0f, 0.0f));
 	_view = _camera->getView();
 
@@ -48,10 +50,10 @@ void OpenGLPatch::initializeGL()
 
 	// add all points in a vector to compute and draw Bezier Surface
 	// -------------------------------------------------------------
-	glm::vec3 point1 = glm::vec3(-0.75, 0.75, 0.5), point2 = glm::vec3(-0.25, 0.75, 0.0), point3 = glm::vec3(0.25, 0.75, 0.0), point4 = glm::vec3(0.75, 0.75, 0.0);
-	glm::vec3 point5 = glm::vec3(-0.75, 0.25, 0.0), point6 = glm::vec3(-0.25, 0.25, -5), point7 = glm::vec3(0.25, 0.25, 0.75), point8 = glm::vec3(0.75, 0.25, 0.0);
-	glm::vec3 point9 = glm::vec3(-0.75, -0.25, 0.0), point10 = glm::vec3(-0.25, -0.25, 0.0), point11 = glm::vec3(0.25, -0.25, 0.0), point12 = glm::vec3(0.75, -0.25, -0.5);
-	glm::vec3 point13 = glm::vec3(-0.75, -0.75, 0.0), point14 = glm::vec3(-0.25, -0.75, 0.0), point15 = glm::vec3(0.25, -0.75, 1.0), point16 = glm::vec3(0.75, -0.75, 0.0);
+	glm::vec3 point1 = glm::vec3(-0.75, 0.75, getRandomZ()), point2 = glm::vec3(-0.25, 0.75, getRandomZ()), point3 = glm::vec3(0.25, 0.75, getRandomZ()), point4 = glm::vec3(0.75, 0.75, getRandomZ());
+	glm::vec3 point5 = glm::vec3(-0.75, 0.25, getRandomZ()), point6 = glm::vec3(-0.25, 0.25, getRandomZ()), point7 = glm::vec3(0.25, 0.25, getRandomZ()), point8 = glm::vec3(0.75, 0.25, getRandomZ());
+	glm::vec3 point9 = glm::vec3(-0.75, -0.25, getRandomZ()), point10 = glm::vec3(-0.25, -0.25, getRandomZ()), point11 = glm::vec3(0.25, -0.25, getRandomZ()), point12 = glm::vec3(0.75, -0.25, getRandomZ());
+	glm::vec3 point13 = glm::vec3(-0.75, -0.75, getRandomZ()), point14 = glm::vec3(-0.25, -0.75, getRandomZ()), point15 = glm::vec3(0.25, -0.75, getRandomZ()), point16 = glm::vec3(0.75, -0.75, getRandomZ());
 
 	struct Vertex v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16;
 	v1.pos = point1; v2.pos = point2; v3.pos = point3; v4.pos = point4; v5.pos = point5; v6.pos = point6; v7.pos = point7; v8.pos = point8;
@@ -72,13 +74,13 @@ void OpenGLPatch::initializeGL()
 
 	_surface = new Surface(_controlPoints, _controlPoints.size());
 	_surface->getFullSurface();
-	_surface->_surfaceMesh->meshCompute();
+	//_surface->_surfaceMesh->meshCompute();
 	//_surface->_surfaceMesh->setupMesh();
 
-	// TODO : creer classe surface et y mettre tout ce qui a ete fait pour la surface de la classe curve
-	// ajouter un tableau d'indices dans les parametres et tout modifier en consequence
-	// faire une methode pour calculer le maillage selon methode antoine, l'utiliser ici comme ci dessous
-	//_curve->computeMeshSurface()
+	/*AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+	std::cout << " OK ";*/
 }
 
 void OpenGLPatch::paintGL() 
@@ -89,8 +91,11 @@ void OpenGLPatch::paintGL()
 	_shaderCam->Bind(); 
 	_shaderCam->setMat4("view", _camera->getView());
 	_shaderCam->setMat4("projection", _camera->getProjection());
+	_shaderPoints->Bind();
+	_shaderPoints->setMat4("view", _camera->getView());
+	_shaderPoints->setMat4("projection", _camera->getProjection());
 	_surface->_surfaceMesh->Draw(_shaderCam);
-	_points->Draw(_shaderCam);
+	_points->Draw(_shaderPoints);
 
 	glFinish();
 }
@@ -132,3 +137,7 @@ void OpenGLPatch::wheelEvent(QWheelEvent* event)
 	update();
 }
 
+float OpenGLPatch::getRandomZ()
+{
+	return (-2) + (std::rand() % (2 - (-2) + 1));
+}

@@ -57,7 +57,7 @@ void Curve::getFullCurve()
 {
 	vector<Vertex> bezierVertices;
 
-	float step = 0.001 / (float)_nbPoints;
+	float step = 0.01 / (float)_nbPoints;
 	for (float t = 0; t < 1.0f; t += step)
 	{
 		struct Vertex v;

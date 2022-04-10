@@ -1,4 +1,5 @@
 #pragma once
+// most of this camera class copyright : Antoine Lafon
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

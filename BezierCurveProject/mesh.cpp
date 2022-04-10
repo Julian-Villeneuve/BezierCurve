@@ -52,6 +52,7 @@ Mesh::Mesh(std::vector<Vertex>* vertices, std::vector<unsigned int> indices)
     glGenBuffers(NUM_BUFFERS, _VBO);
     glBindBuffer(GL_ARRAY_BUFFER, _VBO[POSITION_VB]);
     glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.size() * sizeof(unsigned int), &_indices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
@@ -69,7 +70,7 @@ Mesh::~Mesh()
 
 void Mesh::setupMesh()
 {
-    glGenVertexArrays(1, &_VAO);
+    initializeOpenGLFunctions();
     glBindVertexArray(_VAO);
 
     std::vector<float> data;
@@ -78,9 +79,9 @@ void Mesh::setupMesh()
         data.push_back(v.pos.y);
         data.push_back(v.pos.z);
     }
-    glGenBuffers(NUM_BUFFERS, _VBO);
     glBindBuffer(GL_ARRAY_BUFFER, _VBO[POSITION_VB]);
     glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.size() * sizeof(unsigned int), &_indices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
@@ -88,8 +89,8 @@ void Mesh::setupMesh()
     glBindVertexArray(0);
 }
 
-// mesh drawing method
-// -------------------
+// mesh drawing methods
+// --------------------
 void Mesh::Draw(Shader* shader)
 {
     shader->Bind();
@@ -122,7 +123,8 @@ void Mesh::DrawTriangle(Shader* shader)
     glBindVertexArray(_VAO);
 
     glColor3ub(0, 0, 0);
-    glDrawArrays(GL_TRIANGLES, 0, _drawCount);
+    //glDrawArrays(GL_TRIANGLES, 0, _drawCount);
+    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(_indices.size()), GL_UNSIGNED_INT, 0);
 
     glBindVertexArray(0);
     shader->Unbind();

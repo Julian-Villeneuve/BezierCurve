@@ -113,5 +113,11 @@
     <None Include="curveShader.vs">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="cameraPoints.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="cameraPoints.fs">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -54,15 +54,9 @@ glm::vec3 Surface::bezierSurfaceCompute(float u, float v)
 
 void Surface::getFullSurface()
 {
-	vector<unsigned int> indices;
-	for (int i = 0; i < _nbPoints * _nbPoints; i++)
-	{
-		indices.push_back(i);
-	}
-
 	vector<Vertex> bezierVertices;
 
-	float step = 1.0 / (float)this->_nbPoints;
+	float step = 0.1 / (float)this->_nbPoints;
 	for (float u = 0; u <= 1.0f; u += step)
 	{
 		for (float v = 0; v <= 1.0f; v += step)
@@ -73,5 +67,16 @@ void Surface::getFullSurface()
 		}
 	}
 
-	this->_surfaceMesh = new Mesh(&bezierVertices, indices);
+	vector<unsigned int> indices;
+	for (int i = 1; i < bezierVertices.size(); i++)
+	{
+		for (int j = 0; j < (1.0/step) - 1; j++)
+		{
+			indices.push_back(i * (1.0 / step) + j);
+			indices.push_back(i * ((1.0 / step) - 1) + j);
+			indices.push_back(i * ((1.0 / step) - 1) + (j + 1));
+		}
+	}
+
+	_surfaceMesh = new Mesh(&bezierVertices, indices);
 }

@@ -21,17 +21,6 @@ void OpenGLWidget::initializeGL()
 		exit(1);
 	}
 
-	/*// mesh class tests
-	struct Vertex v1,v2,v3;
-	v1.pos = glm::vec3(-0.5, -0.5, 0);
-	v2.pos = glm::vec3(0, 0.5, 0);
-	v3.pos = glm::vec3(0.5, -0.5, 0);
-	vector<Vertex> vertices;
-	vertices.push_back(v1);
-	vertices.push_back(v2);
-	vertices.push_back(v3);
-	_mesh = new Mesh(&vertices, vertices.size());*/
-
 	_shaderPoly = new Shader("basicShader");
 	_shaderCurve = new Shader("curveShader");
 	glColor3f(0.0, 0.0, 0.0);
@@ -42,6 +31,7 @@ void OpenGLWidget::initializeGL()
 	glm::vec3 point3 = glm::vec3(-0.5, 0.5, 0.0);
 	glm::vec3 point4 = glm::vec3(-0.5, -0.5, 0.0);
 	glm::vec3 point5 = glm::vec3(0.0, 0.0, 0.0);
+	//glm::vec3 point6 = glm::vec3(0.75, -0.75, 0.0);
 
 	// add all points as Point class to draw them
 	// ------------------------------------------
@@ -51,6 +41,7 @@ void OpenGLWidget::initializeGL()
 	_points->Add(point3);
 	_points->Add(point4);
 	_points->Add(point5);
+	//_points->Add(point6);
 	
 	// add all points in a vector to compute and draw Bezier Curve then draw separately the control polygon
 	// ----------------------------------------------------------------------------------------------------
@@ -71,6 +62,13 @@ void OpenGLWidget::initializeGL()
 	_controlPolygon = new Mesh(&_controlVertices, _controlVertices.size());
 	_curve = new Curve(_controlVertices, _controlVertices.size());
 	_curve->getFullCurve();
+
+
+	// to test the setupMesh() method that doesn't work
+	/*struct Vertex v6;
+	v6.pos = point6;
+	_controlVertices.push_back(v6);
+	_curve->_curveMesh->setupMesh();*/
 
 }
 
@@ -105,13 +103,10 @@ void OpenGLWidget::mousePressEvent(QMouseEvent* event)
 		v.pos = glm::vec3(_xAtPress, _yAtPress, 0);
 		_controlVertices.push_back(v);
 		_nbPoint++;
-		struct Vertex vPrev;
-		vPrev.pos = glm::vec3(_prevX, _prevY, 0);
+		/*struct Vertex vPrev;
+		vPrev.pos = glm::vec3(_prevX, _prevY, 0);*/
 
-		//_controlPolygon->~Mesh();
-
-		//_curve = new Curve(_controlVertices, _controlVertices.size());
-		//_curve->_curveMesh->Draw();
+		//_curve->_curveMesh->setupMesh();
 
 		_prevX = _xAtPress;
 		_prevY = _yAtPress;

@@ -3,6 +3,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
+#include <random>
 #include <QOpenGLWidget>
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -40,11 +41,13 @@ protected:
 	void OpenGLPatch::wheelEvent(QWheelEvent* event) override;
 
 private:
+	float getRandomZ();
+
 	bool _mousePressed=false;
 	int _width;
 	int _height;
 	QTime _myTimer;
-	Shader* _shaderCam, *_shaderBezier;
+	Shader* _shaderCam, *_shaderPoints;
 	Points* _points;
 	vector<Vertex> _controlPoints;
 	vector<glm::vec3> test1;

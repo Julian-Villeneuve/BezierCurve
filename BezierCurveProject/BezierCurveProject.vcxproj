@@ -122,6 +122,8 @@
     <None Include="basicShader.vs" />
     <None Include="camera.fs" />
     <None Include="camera.vs" />
+    <None Include="cameraPoints.fs" />
+    <None Include="cameraPoints.vs" />
     <None Include="curveShader.fs" />
     <None Include="curveShader.vs" />
     <None Include="packages.config" />

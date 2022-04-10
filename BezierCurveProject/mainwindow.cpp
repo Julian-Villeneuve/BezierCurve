@@ -37,4 +37,12 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
         
 	}
 
+    /*if (event->key() == Qt::Key_R)
+    {
+        if (!_curveScreen)
+        {
+            openglPatch->randomize();
+        }
+    }*/
+
 }
