@@ -2,7 +2,9 @@
 
 ## Utilisation
 
-Pour utiliser l'application, le l'executable est disponible dans /application/BezierCurveProject.exe. Pour la modifier il est conseillé d'utiliser Visual Studio avec glm et Qt (version 5 au moins) d'installés. Il suffit de charger la solution fournie avec Visual Studio: https://github.com/Julian-Villeneuve/BezierCurve/blob/main/BezierCurveProject.sln
+Pour utiliser l'application, le l'executable est disponible dans /application/BezierCurveProject.exe. 
+
+Pour la modifier, le code source est dans le dossier /BezierCurveProject. Il est conseillé d'utiliser Visual Studio avec glm et Qt (version 5 au moins) d'installés. Il suffit de charger la solution fournie avec Visual Studio: https://github.com/Julian-Villeneuve/BezierCurve/blob/main/BezierCurveProject.sln
 
 ## Commandes
 - Simulation courbe de Bézier:
