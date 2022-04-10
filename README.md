@@ -110,8 +110,10 @@ Puis avec un plus grand nombre de points dans les courbes, modifiable via la var
 (ici avec 100 points):
 
 
+https://user-images.githubusercontent.com/59332180/162636834-b512b831-65a2-4664-b149-de41dca07ae7.mp4
 
 
+D'autres exemples de surfaces puisqu'elles sont aléatoires:
 
 https://user-images.githubusercontent.com/59332180/162626311-f31bb6b5-3a58-4903-a894-01a5732cb062.mp4
 
