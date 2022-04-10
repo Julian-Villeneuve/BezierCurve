@@ -106,11 +106,22 @@ une surface aléatoire et sans maillage suivante:
 
 https://user-images.githubusercontent.com/59332180/162547382-ddcfa92c-518b-4567-84c7-cb979174414e.mp4
 
+Puis avec un plus grand nombre de points dans les courbes, modifiable via la variable step dans la méthode getFullSurface() de la classe surface.cpp
+(ici avec 100 points):
+
+https://user-images.githubusercontent.com/59332180/162626311-f31bb6b5-3a58-4903-a894-01a5732cb062.mp4
+
 ### Maillage
-Sans maillage, c'est plutôt dur de s'y retrouver comme le montre la vidéo précédente. La méthode que j'ai utilisé est simple: 
+Comme le montre les vidéos précédentes, c'est plutôt dur de s'y retrouver sans maillage avec un nombre peu élevé de points, et ça fait un peu mal aux yeux
+avec beaucoup de points (même si c'est très joli). 
+On va donc faire un maillage en plaçant les indices des vertices correspondants aux points dans l'ordre dans lequel on veut dessiner les mailles, 
 
 On place les indices des vertices correspondants aux points dans l'ordre dans lequel on veut dessiner les triangles. 
 Avec ces nouveaux indices on dessinera des lignes entre chaque vertex de sorte à avoir un maillage comme ci-dessous:
+
+
+
+
 
 
 
