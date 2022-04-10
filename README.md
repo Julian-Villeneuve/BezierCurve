@@ -114,9 +114,8 @@ https://user-images.githubusercontent.com/59332180/162626311-f31bb6b5-3a58-4903-
 ### Maillage
 Comme le montre les vidéos précédentes, c'est plutôt dur de s'y retrouver sans maillage avec un nombre peu élevé de points, et ça fait un peu mal aux yeux
 avec beaucoup de points (même si c'est très joli). 
-On va donc faire un maillage en plaçant les indices des vertices correspondants aux points dans l'ordre dans lequel on veut dessiner les mailles, 
+On va donc faire un maillage en plaçant les indices des vertices correspondants aux points dans l'ordre dans lequel on veut dessiner les mailles.
 
-On place les indices des vertices correspondants aux points dans l'ordre dans lequel on veut dessiner les triangles. 
 Avec ces nouveaux indices on dessinera des lignes entre chaque vertex de sorte à avoir un maillage comme ci-dessous:
 
 
